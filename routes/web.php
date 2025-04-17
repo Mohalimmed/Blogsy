@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubscriberController;
+use App\Http\Controllers\ThemeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::controller(ThemeController::class)->name('theme.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/category', 'category')->name('category');
+    Route::get('/contact', 'contact')->name('contact');
+    Route::get('/single-blog', 'singleBlog')->name('singleBlog');
 });
+
+
+Route::post('/subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +44,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
