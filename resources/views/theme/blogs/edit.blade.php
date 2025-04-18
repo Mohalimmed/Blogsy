@@ -9,9 +9,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    @if (session('blogUpdateStatus'))
+                    @if (session('blogUpdatedStatus'))
                         <div class="alert alert-success">
-                            {{ session('blogUpdateStatus') }}
+                            {{ session('blogUpdatedStatus') }}
                         </div>
                     @endif
 

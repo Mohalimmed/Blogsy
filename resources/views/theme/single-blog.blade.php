@@ -31,7 +31,7 @@
                         <p>{{ $blog->description }}</p>
                     </div>
 
-                    @if (count($blog->comments) > 0)
+                    {{-- @if (count($blog->comments) > 0)
                         <div class="comments-area">
                             <h4>{{ count($blog->comments) }} Comments</h4>
                             @foreach ($blog->comments as $comment)
@@ -53,17 +53,17 @@
                                 </div>
                             @endforeach
                         </div>
-                    @endif
+                    @endif --}}
 
                     <div class="comment-form">
                         <h4>Leave a Reply</h4>
 
-                        @if (session('commentCreateStatus'))
+                        {{-- @if (session('commentCreateStatus'))
                             <div class="alert alert-success">
                                 {{ session('commentCreateStatus') }}
                             </div>
-                        @endif
-
+                        @endif --}}
+                        {{-- 
                         <form action="{{ route('comments.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="blog_id" value="{{ $blog->id }}">
@@ -91,7 +91,7 @@
                                 <x-input-error :messages="$errors->get('message')" class="mt-2" />
                             </div>
                             <button type="submit" class="button submit_btn">Post Comment</button>
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
 
