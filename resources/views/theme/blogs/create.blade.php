@@ -22,12 +22,12 @@
                         <div class="form-group">
                             <input class="form-control border" name="name" type="text"
                                 placeholder="Enter your blog title" value="{{ old('name') }}">
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" style="color: red" />
                         </div>
 
                         <div class="form-group">
                             <input class="form-control border" name="image" type="file">
-                            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('image')" class="mt-2" style="color: red" />
                         </div>
 
                         <div class="form-group">
@@ -40,12 +40,12 @@
                                     @endforeach
                                 @endif
                             </select>
-                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" style="color: red" />
                         </div>
 
                         <div class="form-group">
                             <textarea class="w-100 border" name="description" placeholder="Enter your blog title" rows="5">{{ old('description') }}</textarea>
-                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            <x-input-error :messages="$errors->get('description')" class="mt-2" style="color: red" />
                         </div>
 
                         <div class="form-group text-center text-md-right mt-3">
