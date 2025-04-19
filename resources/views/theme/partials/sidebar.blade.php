@@ -1,6 +1,6 @@
 @php
     $categories = App\Models\Category::get();
-    // $recentBlogs = App\Models\Blog::latest()->take(3)->get();
+    $recentBlogs = App\Models\Blog::latest()->take(3)->get();
 @endphp
 
 <!-- Start Blog Post Siddebar -->
@@ -46,30 +46,30 @@
             </div>
         @endif
 
-        {{-- @if (count($recentBlogs) > 0) --}}
-        <div class="single-sidebar-widget popular-post-widget">
-            <h4 class="single-sidebar-widget__title">Recent Blogs</h4>
-            <div class="popular-post-list">
-                {{-- @foreach ($recentBlogs as $blog) --}}
-                <div class="single-post-list">
-                    <div class="thumb">
-                        {{-- <img class="card-img rounded-0" src="{{ asset("storage/blogs/$blog->image") }}" --}}
-                        alt="">
-                        <ul class="thumb-info">
-                            {{-- <li><a href="#">{{ $blog->user->name }}</a></li>
-                                    <li><a href="#">{{ $blog->created_at->format('d M') }}</a></li> --}}
-                        </ul>
-                    </div>
-                    <div class="details mt-20">
-                        {{-- <a href="{{ route('blogs.show', ['blog' => $blog]) }}"> --}}
-                        {{-- <h6>{{ $blog->name }}</h6> --}}
-                        </a>
-                    </div>
+        @if (count($recentBlogs) > 0)
+            <div class="single-sidebar-widget popular-post-widget">
+                <h4 class="single-sidebar-widget__title">Recent Blogs</h4>
+                <div class="popular-post-list">
+                    @foreach ($recentBlogs as $blog)
+                        <div class="single-post-list">
+                            <div class="thumb">
+                                <img class="card-img rounded-0" src="{{ asset("storage/blogs/$blog->image") }}"
+                                    alt="">
+                                <ul class="thumb-info">
+                                    <li><a href="#">{{ $blog->user->name }}</a></li>
+                                    <li><a href="#">{{ $blog->created_at->format('d M') }}</a></li>
+                                </ul>
+                            </div>
+                            <div class="details mt-20">
+                                <a href="{{ route('blogs.show', ['blog' => $blog]) }}">
+                                    <h6>{{ $blog->name }}</h6>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                {{-- @endforeach --}}
             </div>
-        </div>
-        {{-- @endif --}}
+        @endif
     </div>
 </div>
 <!-- End Blog Post Siddebar -->

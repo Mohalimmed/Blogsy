@@ -92,9 +92,9 @@
                         <button type="submit" class="button submit_btn">Post Comment</button>
                     </form>
                 </div>
+                @include('theme.partials.sidebar')
             </div>
 
-            @include('theme.partials.sidebar')
         </div>
     </section>
     <!--================ End Blog Post Area =================-->
