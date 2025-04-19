@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubscriberController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,7 @@ Route::post('/contact/store', [ContactController::class, 'store'])->name('contac
 
 Route::resource('blogs', BlogController::class);
 Route::get('/my-blogs', [BlogController::class, 'myBlogs'])->name('blogs.my-blogs');
+Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
 
 
 // Route::get('/', function () {
