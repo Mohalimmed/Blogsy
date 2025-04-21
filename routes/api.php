@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogsyController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactController;
@@ -20,9 +21,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/register', 'register');
+    Route::post('/login', 'login');
+    // Route::get('/user', 'user')->middleware('auth:sanctum');
+    Route::post('/logout', 'logout')->middleware('auth:sanctum');
 });
+
+
 
 Route::get('/blogs', BlogsyController::class);
 Route::get('/category', CategoryController::class);
