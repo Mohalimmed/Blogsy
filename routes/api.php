@@ -31,6 +31,14 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::prefix('/blogs')->controller(BlogsController::class)->group(function () {
     Route::get('/', 'index');
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/create', 'create');
+        Route::post('/update/{blog_id}', 'update');
+        Route::delete('/delete/{blog_id}', 'destroy');
+        Route::get('/myblogs', 'myblogs');
+        // Route::put('/{blog}', 'update');
+        // Route::delete('/{blog}', 'destroy');
+    });
 });
 
 Route::get('/category', CategoryController::class);
