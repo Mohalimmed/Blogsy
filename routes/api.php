@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogsController;
 use App\Http\Controllers\Api\BlogsyController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactController;
@@ -28,8 +29,9 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->middleware('auth:sanctum');
 });
 
+Route::prefix('/blogs')->controller(BlogsController::class)->group(function () {
+    Route::get('/', 'index');
+});
 
-
-Route::get('/blogs', BlogsyController::class);
 Route::get('/category', CategoryController::class);
 Route::post('/contact', ContactController::class);

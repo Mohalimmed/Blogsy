@@ -15,9 +15,10 @@ class BlogsyResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'title' => $this->name,
             'description' => $this->description,
-            'image' => $this->image,
+            'image' => $this->image ? asset('storage/blogs/' . $this->image) : null,
             'category_id' => $this->category_id,
             'category' => $this->category->name,
             'user_id' => $this->user_id,
