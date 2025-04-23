@@ -21,8 +21,6 @@ class BlogsController extends Controller
             $q->where('name', 'LIKE', '%' . $request->search . '%');
         });
         $data = $query->latest()->paginate(5)->appends(request()->query());
-
-
         if ($data) {
             if ($data->total() > $data->perPage()) {
                 $blogs = [
@@ -44,6 +42,14 @@ class BlogsController extends Controller
             return ApiResponse::ResponseMessage($blogs, 'Blogs Fetched Successfully', 200);
         }
         return ApiResponse::ResponseMessage([], 'Blogs Not Found', 200);
+    }
+    public function singleBlog($blog_id)
+    {
+        $blog = Blog::with(['category', 'user', 'comments'])->find($blog_id);
+        if ($blog) {
+            return ApiResponse::ResponseMessage(new BlogsyResource($blog), 'Blog Fetched Successfully', 200);
+        }
+        return ApiResponse::ResponseMessage([], 'Blog Not Found', 404);
     }
 
     public function create(BlogRequest $request)

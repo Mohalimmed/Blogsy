@@ -23,6 +23,7 @@ class BlogsyResource extends JsonResource
             'category' => $this->category->name,
             'user_id' => $this->user_id,
             'user' => $this->user->name,
+            'comments' => CommentResource::collection($this->comments),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

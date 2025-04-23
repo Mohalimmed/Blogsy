@@ -4,10 +4,13 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BlogsController;
 use App\Http\Controllers\Api\BlogsyController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\SubscriberController;
 use App\Http\Controllers\BlogController;
 use App\Models\Blog;
 use App\Models\Contact;
+use Dom\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,15 +34,16 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::prefix('/blogs')->controller(BlogsController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/{blog_id}', 'singleBlog')->where('blog_id', '[0-9]+');
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/create', 'create');
         Route::post('/update/{blog_id}', 'update');
         Route::delete('/delete/{blog_id}', 'destroy');
         Route::get('/myblogs', 'myblogs');
-        // Route::put('/{blog}', 'update');
-        // Route::delete('/{blog}', 'destroy');
     });
 });
 
 Route::get('/category', CategoryController::class);
 Route::post('/contact', ContactController::class);
+Route::post('/comment', CommentController::class);
+Route::post('/subscriber', SubscriberController::class);
